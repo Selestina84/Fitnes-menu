@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
             tabs.forEach((item,i) => {
                 if(target == item){
                     hideTabContent();
-                    showTabContent(i); 
+                    showTabContent(i);
                 }
             });
         }
@@ -117,5 +117,5 @@ const modalTrigger = document.querySelectorAll('[data-modal]'),
         }
       }
       window.addEventListener('scroll', showModalByScroll);
-          
+    // fetch form
 });
