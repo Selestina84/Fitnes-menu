@@ -148,10 +148,20 @@ const modalTrigger = document.querySelectorAll('[data-modal]'),
         }, 2000);
       };
       forms.forEach(item=>{
-          postData(item)
-      })
+          bindPostData(item)
+      });
 
-      function postData(form){
+      const postData = async (url , data) =>{
+        const res = await fetch( url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: data
+        });
+      };
+
+      function bindPostData(form){
         form.addEventListener('submit', (e) => {
             e.preventDefault();
         const statusMessage = document.createElement('img');
@@ -167,14 +177,7 @@ const modalTrigger = document.querySelectorAll('[data-modal]'),
         formData.forEach((value, key) => {
             object[key]=value
         });
-        fetch('https://my-json-server.typicode.com/Selestina84/Fitnes-menu/users',{
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(object)
-        })
-        .then (response => response.json())
+        postData('https://my-json-server.typicode.com/Selestina84/Fitnes-menu/requests', JSON.stringify(object))
         .then(json =>{
             console.log(json);
             showThanksModal(message.success);
